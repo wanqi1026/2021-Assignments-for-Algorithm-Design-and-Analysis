@@ -1,10 +1,3 @@
-/*********************************************************************
-    ³ÌĞòÃû:
-    °æÈ¨:
-    ×÷Õß: ÌÕÍòÆô
-    ÈÕÆÚ: 2023-05-05 16:56
-    ËµÃ÷:
-*********************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -17,11 +10,11 @@ int partition(int arr[], int l, int r);
 void swap(int arr[], int i, int j);
 bool isSeqArray(int arr[], int r);
 
-#define N 50 //Êı×é³¤¶È
+#define N 50 //æ•°ç»„é•¿åº¦
 
 int main() {
 	int Snum;
-	printf("ÇëÊäÈëÄãµÄÑ§ºÅ: ");
+	printf("è¯·è¾“å…¥ä½ çš„å­¦å·: ");
 	scanf("%d", &Snum);
 
 	int arr[N];
@@ -32,9 +25,9 @@ int main() {
 	}
 
 	int seq = Snum % 100;
-	printf("\n\nµÚ %d Ğ¡µÄÔªËØ£º ", seq);
-	//ÎªÊ²Ã´ÊÇ seq-1£¿
-	//Êı×éÏÂ±ê´Ó0¿ªÊ¼
+	printf("\n\nç¬¬ %d å°çš„å…ƒç´ ï¼š ", seq);
+	//ä¸ºä»€ä¹ˆæ˜¯ seq-1ï¼Ÿ
+	//æ•°ç»„ä¸‹æ ‡ä»0å¼€å§‹
 	sort(arr, 0, N - 1, seq - 1);
 	printf("\nAfter sort:\n");
 	for (int i = 0; i < N; i++) {
@@ -58,9 +51,9 @@ void copyArray(int a[], int b[], int length) {
 }
 
 void generate_random_array(int a[], int n) {
-	srand((unsigned)time(NULL)); // Ê¹ÓÃµ±Ç°Ê±¼ä×÷ÎªËæ»úÊıÖÖ×Ó
+	srand((unsigned)time(NULL)); // ä½¿ç”¨å½“å‰æ—¶é—´ä½œä¸ºéšæœºæ•°ç§å­
 	for (int i = 0; i < n; i++) {
-		a[i] = rand() % 50 + 1; // Éú³ÉËæ»úÊı²¢¸³Öµ¸øÊı×éÔªËØ
+		a[i] = rand() % 50 + 1; // ç”Ÿæˆéšæœºæ•°å¹¶èµ‹å€¼ç»™æ•°ç»„å…ƒç´ 
 	}
 }
 
