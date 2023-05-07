@@ -1,10 +1,3 @@
-/*********************************************************************
-    ³ÌĞòÃû:
-    °æÈ¨:
-    ×÷Õß: ÌÕÍòÆô
-    ÈÕÆÚ: 2023-05-05 21:05
-    ËµÃ÷:
-*********************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,14 +12,14 @@ void lexicographicPermute(char *str, char *str2);
 bool flag = false;
 int sum = 0;
 
-// ½»»»Á½¸ö×Ö·û
+// äº¤æ¢ä¸¤ä¸ªå­—ç¬¦
 void swap(char *a, char *b) {
 	char temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
-// ·´×ª×Ö·û´®
+// åè½¬å­—ç¬¦ä¸²
 void reverse(char *str, int start, int end) {
 	while (start < end) {
 		swap(&str[start], &str[end]);
@@ -46,7 +39,7 @@ void InsertSort(char arr[], int len) {
 	}
 }
 
-// ÕÒµ½ÏÂÒ»¸ö×ÖµäĞòÅÅÁĞ
+// æ‰¾åˆ°ä¸‹ä¸€ä¸ªå­—å…¸åºæ’åˆ—
 int nextPermutation(char *str, int n) {
 	int i = n - 2;
 	while (i >= 0 && str[i] >= str[i + 1]) {
@@ -64,16 +57,16 @@ int nextPermutation(char *str, int n) {
 	return 1;
 }
 
-// Êä³öÈ«ÅÅÁĞ
+// è¾“å‡ºå…¨æ’åˆ—
 void lexicographicPermute(char *str, char *str2) {
 	int n = strlen(str);
-	InsertSort(str, n); // ÏÈÅÅĞò
-	printf("\nÅÅĞòºó: \n");
+	InsertSort(str, n); // å…ˆæ’åº
+	printf("\næ’åºå: \n");
 	printf("%s\n\n", str);
 	while (nextPermutation(str, n)) {
 
 		if (flag) {
-			printf("µÚ %d ºÅ: %s\n", sum, str);
+			printf("ç¬¬ %d å·: %s\n", sum, str);
 			exit(0);
 		}
 		if (strcmp(str, str2) == 0) {
@@ -87,15 +80,15 @@ void lexicographicPermute(char *str, char *str2) {
 int main() {
 
 	int Snum;
-	printf("ÇëÊäÈëÄãµÄÑ§ºÅ: ");
+	printf("è¯·è¾“å…¥ä½ çš„å­¦å·: ");
 	scanf("%d", &Snum);
 	int n = (Snum % 100) % 5 + 5;
-	printf("ÇëÊäÈë %d ¸öÔªËØ: \n", n);
+	printf("è¯·è¾“å…¥ %d ä¸ªå…ƒç´ : \n", n);
 
 	char arr[n];
 	scanf("%s", &arr);
 
-	printf("\nÄãÊäÈëµÄÔªËØÊÇ£º\n");
+	printf("\nä½ è¾“å…¥çš„å…ƒç´ æ˜¯ï¼š\n");
 	printf("%s", arr);
 	printf("\n");
 
