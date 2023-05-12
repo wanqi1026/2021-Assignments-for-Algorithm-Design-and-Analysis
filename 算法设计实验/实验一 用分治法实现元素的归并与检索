@@ -1,0 +1,101 @@
+/*
+本关任务：随机生成20个从1－100之间的随机数，用递归与分治法编程实现元素的查找算法。
+*/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+
+void generate_random_array(int a[], int n);
+void sort(int arr[], int l, int r);
+void merge(int a[], int start, int mid, int end) ;
+int binary_search(int arr[], int l, int r, int x);
+
+int main( void ) {
+
+	int N = 20;
+	int arr[N];
+
+	generate_random_array(arr, N);
+	for (int i = 0; i < N; i++) {
+		printf("%d ", arr[i]);
+	}
+
+	printf("\n\n");
+	sort(arr, 0, N - 1);
+	for (int i = 0; i < N; i++) {
+		printf("%d ", arr[i]);
+	}
+
+	srand((unsigned)time(NULL));
+	int x = rand() % 100 + 1;
+
+	printf("\n\n要查找的值%d:\n", x);
+
+	printf("\n结果：%d", binary_search(arr, 0, N - 1, x));
+
+	return  0;
+}
+
+void generate_random_array(int *arr, int n) {
+	srand((unsigned)time(NULL)); // 使用当前时间作为随机数种子
+	for (int i = 0; i < n; i++) {
+		arr[i] = rand() % 100 + 1; // 生成随机数并赋值给数组元素
+	}
+}
+
+void sort(int arr[], int l, int r) {
+	if (l >= r)
+		return ;
+
+	int mid = l + (r - l) / 2;
+	sort(arr, l, mid);
+	sort(arr, mid + 1, r);
+	merge(arr, l, mid, r);
+}
+
+void merge(int a[], int start, int mid, int end)  {
+	int *tmp = (int *)malloc((end - start + 1) * sizeof(int));
+	// tmp是汇总2个有序区间的临时区域。
+	int i = start; // 第一个有序区的索引
+	int j = mid + 1; // 第二个有序区的索引
+	int k = 0; // 临时区域的索引
+	while (i <= mid && j <= end) {
+		if (a[i] <= a[j]) {
+			tmp[k++] = a[i++];
+		} else {
+			tmp[k++] = a[j++];
+		}
+	}
+	while (i <= mid) {
+		tmp[k++] = a[i++];
+	}
+	while (j <= end) {
+		tmp[k++] = a[j++]; // 将两个有序区间合并
+	}
+	// 排序后的元素，全部都整合到数组a中
+	for (i = 0; i < k; i++) {
+		a[start + i] = tmp[i];
+	}
+	free(tmp);
+	tmp = NULL;
+}
+
+
+int binary_search(int arr[], int l, int r, int x) {
+	if (l > r) {
+		return -1;
+	}
+
+	int mid = l + (r - l) / 2;
+	if (arr[mid] == x) {
+		return mid;
+	} else if (arr[mid] < x) {
+		return binary_search(arr, mid + 1, r, x);
+	} else {
+		return binary_search(arr, l, mid - 1, x);
+	}
+}
+
+
+
